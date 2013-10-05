@@ -28,8 +28,8 @@
                 <li><em>To download all your templates, click each file that belongs to you.</em></li>
                   <ul>
                     <?php
-                      foreach (glob('files/*.xlsm') as $filepath) {
-                        $filename = str_replace("files/", "", $filepath);
+                      foreach (glob('/files/*.xlsm') as $filepath) {
+                        $filename = str_replace("/files/", "", $filepath);
                         echo "<li><a href=\"download.php?file=$filename\">" . $filename . "</a></li>\n";
                       }
                     ?>
