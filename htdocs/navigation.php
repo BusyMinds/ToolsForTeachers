@@ -1,19 +1,3 @@
-<?php
-switch (basename($_SERVER['PHP_SELF'], '.php')) {
-  case "index":
-    $is_index = true;
-    break;
-  case "ecr":
-    $is_ecr = true;
-    break;
-  case "competencies":
-    $is_competencies = true;
-    break;
-  default:
-    $is_index = true;
-    break;
-}
-?>
 <div class="navbar navbar-blue navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
@@ -46,17 +30,17 @@ switch (basename($_SERVER['PHP_SELF'], '.php')) {
         <?php
         echo ((isset($is_index)) ? "<li class=\"active\">" : "<li>")
         ?>
-        <a href="index.php"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+        <a href="/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
 
         <?php
         echo ((isset($is_ecr)) ? "<li class=\"active\">" : "<li>")
         ?>
-        <a href="ecr.php"><span class="glyphicon glyphicon-th-list"></span> ECR</a></li>
+        <a href="/ecr"><span class="glyphicon glyphicon-th-list"></span> ECR</a></li>
 
         <?php
         echo ((isset($is_competencies)) ? "<li class=\"active\">" : "<li>")
         ?>
-        <a href="competencies.php"><span class="glyphicon glyphicon-tasks"></span> Competencies</a></li>
+        <a href="/competencies"><span class="glyphicon glyphicon-tasks"></span> Competencies</a></li>
       </ul>
     </div><!--/.nav-collapse -->
   </div>
