@@ -10,12 +10,14 @@ body {
 
 .navbar-blue .navbar-brand {
   color: #428bca;
+  margin-bottom: -3px;
 }
 
 .navbar-blue .navbar-brand:hover,
 .navbar-blue .navbar-brand:focus {
   color: #428bca;
-  background-color: transparent;
+  /*background-color: #eeeeee;*/
+  margin-bottom: -3px;
 }
 
 .navbar-blue .navbar-text {
@@ -28,8 +30,8 @@ body {
 
 .navbar-blue .navbar-nav > li > a:hover,
 .navbar-blue .navbar-nav > li > a:focus {
-  color: #ffffff;
-  background-color: #428bca;
+  color: #428bca;
+  background-color: #eeeeee;
 }
 
 .navbar-blue .navbar-nav > .active > a,
@@ -52,7 +54,7 @@ body {
 
 .navbar-blue .navbar-toggle:hover,
 .navbar-blue .navbar-toggle:focus {
-  background-color: #428bca;
+  background-color: #eee;
 }
 
 .navbar-blue .navbar-toggle .icon-bar {

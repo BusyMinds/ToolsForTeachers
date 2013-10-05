@@ -14,29 +14,6 @@ switch (basename($_SERVER['PHP_SELF'], '.php')) {
     break;
 }
 ?>
-<!-- <div class="header">
-  <ul class="nav nav-pills pull-right">
-
-    <?php
-    // echo ((isset($is_index)) ? "<li class=\"active\">" : "<li>")
-    ?>
-    <a href="index.php"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-
-    <?php
-    // echo ((isset($is_ecr)) ? "<li class=\"active\">" : "<li>")
-    ?>
-    <a href="ecr.php"><span class="glyphicon glyphicon-th-list"></span> ECR</a></li>
-
-    <?php
-    // echo ((isset($is_competencies)) ? "<li class=\"active\">" : "<li>")
-    ?>
-    <a href="competencies.php"><span class="glyphicon glyphicon-tasks"></span> Competencies</a></li>
-
-  </ul>
-  <h3 class="text-primary"><strong><span class="glyphicon glyphicon-th"></span> SHS-AdC Tools for Teachers</strong></h3>
-</div> -->
-
-<!-- Fixed navbar -->
 <div class="navbar navbar-blue navbar-fixed-top">
   <div class="container">
     <div class="navbar-header">
@@ -45,7 +22,7 @@ switch (basename($_SERVER['PHP_SELF'], '.php')) {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">SHS-AdC Tools for Teachers</a>
+      <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-th"></span> SHS-AdC Tools for Teachers</a>
     </div>
     <div class="navbar-collapse collapse">
       <!-- <ul class="nav navbar-nav">

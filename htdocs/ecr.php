@@ -12,8 +12,8 @@
           Last updated: <strong class="text-info">September 30, 2013</strong><br>
         </p>
         <ul class="list-inline">
-          <li><a class="btn btn-primary" href="#downloads"><span class="glyphicon glyphicon-download-alt"></span> Go to downloads</a></li>
-          <li><a class="btn btn-default" href="#disqus_thread"><span class="glyphicon glyphicon-warning-sign"></span> Submit an issue</a></li>
+          <li><a class="btn btn-primary btn-lg" href="#downloads"><span class="glyphicon glyphicon-download-alt"></span> Go to downloads</a></li>
+          <li><a class="btn btn-default btn-lg" href="#disqus_thread"><span class="glyphicon glyphicon-warning-sign"></span> Submit an issue</a></li>
         </ul>
       </div>
 
