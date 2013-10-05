@@ -1,0 +1,14 @@
+web1: #component type & number
+  name: ecr-files      #component settings
+  shared_writable_dirs:
+    - htdocs/logs
+    - htdocs/files
+  document_root: htdocs
+  php_date_timezone: "Asia/Manila"
+  php_extensions:
+    - json
+    - mysql
+    - pdo
+    - pdo_mysql
+db1:
+  name: tft_db
