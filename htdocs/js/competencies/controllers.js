@@ -83,8 +83,8 @@ angular.module('myApp.controllers', []).
         };
 
 
-        $scope.get_max_meetings = function (subject, grade) {
-            if (subject == null || grade == null) {
+        $scope.get_max_meetings = function () {
+            if ($scope.subject == null || $scope.grade == null) {
                 return null;
             } else {
                 var schedule = {
@@ -102,7 +102,7 @@ angular.module('myApp.controllers', []).
                     "HE": [0,0,0,1,1,1],
                     "Computer": [1,1,1,1,1,1]
                 };
-                return schedule[subject][grade - 1] * 5;
+                return schedule[$scope.subject][$scope.grade - 1] * 5;
             }
         };
 
@@ -116,13 +116,13 @@ angular.module('myApp.controllers', []).
             return total;
         };
 
-        $scope.get_remaining_meetings = function (subject, grade, duration) {
-            var meetings_left = $scope.get_max_meetings(subject, grade) - $scope.get_total_meetings() + duration;
+        $scope.get_remaining_meetings = function (duration) {
+            var meetings_left = $scope.get_max_meetings() - $scope.get_total_meetings() + duration;
             return (meetings_left > 1) ? meetings_left : 1;
         };
 
         $scope.add_new_competency = function () {
-            if ($scope.competencies.length < $scope.get_max_meetings($scope.subject,$scope.grade)) {
+            if ($scope.competencies.length < $scope.get_max_meetings()) {
                 if ($scope.competencies[$scope.competencies.length - 1].competency != null) {
                     $scope.competencies.push({"competency": null, "duration": 1});
                 }
@@ -146,7 +146,7 @@ angular.module('myApp.controllers', []).
                 "grade_level": $scope.grade,
                 "subject": $scope.subject,
                 "total_meetings": $scope.get_total_meetings(),
-                "max_meetings": $scope.get_max_meetings($scope.subject,$scope.grade),
+                "max_meetings": $scope.get_max_meetings(),
                 "competencies_json": $scope.competencies,
                 "created_by": "Noel"
             };

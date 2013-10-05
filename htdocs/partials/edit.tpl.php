@@ -49,11 +49,13 @@
         <hr>
         <div class="row">
           <div class="col-xs-12">
-            <div class="alert alert-info" ng-show="get_max_meetings(subject,grade)">Please plan for <strong>{{get_max_meetings(subject,grade)}} meetings</strong> in the 3rd Quarter.
+            <div class="alert alert-info" ng-show="get_max_meetings()">Please plan for <strong>{{get_max_meetings(subject,grade)}} meetings</strong> in the 3rd Quarter.
               Arrange them in chronological order.</div>
+            <div class="alert alert-danger" ng-show="((get_total_meetings() > get_max_meetings()) && (get_total_meetings() > 1))">You have exceeed the maximum number of meetings allowed.
+              Please recheck. </div>
           </div>
         </div>
-        <form role="form" ng-show="get_max_meetings(subject,grade)">
+        <form role="form" ng-show="get_max_meetings()">
           <table class="table table-responsive">
           <thead>
             <th class="col-xs-9">Competencies</th>
@@ -68,7 +70,7 @@
               </td>
               <td>
                 <label class="sr-only" for="inputDuration{{$index}}">Duration</label>
-                <input type="number" min="1" max="{{get_remaining_meetings(subject,grade,item.duration)}}" class="form-control" id="inputDuration{{$index}}" value="1" ng-model="item.duration" required>
+                <input type="number" min="1" max="{{get_remaining_meetings(item.duration)}}" class="form-control" id="inputDuration{{$index}}" value="1" ng-model="item.duration" required>
               </td>
               <td>
                 <button type="button" class="btn btn-default" ng-click="delete_this_competency($index)">
