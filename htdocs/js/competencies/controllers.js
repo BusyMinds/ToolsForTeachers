@@ -67,8 +67,19 @@ angular.module('myApp.controllers', []).
 
     }])
     .controller('EditController', ['$scope','$http','$routeParams',function($scope,$http,$routeParams) {
-        $scope.grade = parseInt($routeParams.grade);
-        $scope.subject = $routeParams.subject;
+
+        $scope.competencies = [{"competency": null, "duration": 1}];
+
+        if ($routeParams != {}) {
+            $scope.grade = parseInt($routeParams.grade);
+            $scope.subject = $routeParams.subject;
+
+            $http.get('/api/competencies?grade=' + $routeParams.grade + '&subject=' + $routeParams.subject).success(function(data){
+                console.log(data);
+                $scope.competencies = data.competencies_json;
+            });
+        }
+
         // $scope.routeParams = $routeParams;
         $scope.subject_choices = function(grade) {
             var subjects_in_grades = [
@@ -105,8 +116,6 @@ angular.module('myApp.controllers', []).
                 return schedule[$scope.subject][$scope.grade - 1] * 5;
             }
         };
-
-        $scope.competencies = [{"competency": null, "duration": 1}];
 
         $scope.get_total_meetings = function () {
             var total = 0;
