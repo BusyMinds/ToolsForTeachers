@@ -58,7 +58,7 @@
           <tr ng-repeat="item in subject_status">
             <th>{{item.subject}}</th>
             <td ng-repeat="status in item.status" ng-class="status_int_to_class(status)">
-              <span ng-class="status_int_to_glyphicon(status)" ng-show="status_int_to_glyphicon(status)"></span> {{status_int_to_string(status)}}
+              <a ng-href="#/edit?grade={{$index+1}}&subject={{item.subject}}"><span ng-class="status_int_to_glyphicon(status)" ng-show="status_int_to_glyphicon(status)"></span> {{status_int_to_string(status)}}</a>
             </td>
           </tr>
         </tbody>

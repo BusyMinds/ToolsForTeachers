@@ -95,3 +95,4 @@
     </div>
   </div>
 </div>
+<pre>{{routeParams | json}}</pre>

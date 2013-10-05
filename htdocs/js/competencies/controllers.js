@@ -81,8 +81,10 @@ angular.module('myApp.controllers', []).
 
 
     }])
-    .controller('EditController', ['$scope','$http',function($scope,$http) {
-
+    .controller('EditController', ['$scope','$http','$routeParams',function($scope,$http,$routeParams) {
+        $scope.grade = parseInt($routeParams.grade);
+        $scope.subject = $routeParams.subject;
+        $scope.routeParams = $routeParams;
         $scope.subject_choices = function(grade) {
             var subjects_in_grades = [
                 ["CLF", "Chinese", "Filipino", "Language", "Math","Reading",            "Social Studies","Music",         "PE",       "Computer"],

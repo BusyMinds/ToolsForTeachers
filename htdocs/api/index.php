@@ -12,7 +12,7 @@ if (isset($_SERVER['ENV']) && $_SERVER['ENV'] == 'PRODUCTION') {
 } else {
     ORM::configure('mysql:host=localhost;dbname=tft_db');
     ORM::configure('username', 'root');
-    ORM::configure('password', 'root');
+    ORM::configure('password', 'BsqzU4');
 }
 
 
