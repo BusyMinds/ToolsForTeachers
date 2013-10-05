@@ -4,21 +4,6 @@
 
 angular.module('myApp.controllers', []).
     controller('ListController', ['$scope','$http',function($scope,$http) {
-        // $scope.subject_status = [
-        //     {"subject": "CLF", "status": [0,0,1,1,1,1]},
-        //     {"subject": "Chinese", "status": [0,0,0,0,1,1]},
-        //     {"subject": "Filipino", "status": [1,1,0,1,1,1]},
-        //     {"subject": "Language", "status": [0,0,1,1,1,0]},
-        //     {"subject": "Math", "status": [0,0,1,1,0,0]},
-        //     {"subject": "Reading", "status": [1,1,1,1,1,0]},
-        //     {"subject": "Science", "status": [null,null,1,1,1,1]},
-        //     {"subject": "Social Studies", "status": [1,1,1,0,0,1]},
-        //     {"subject": "Music", "status": [1,null,null,1,0,0]},
-        //     {"subject": "Arts", "status": [null,1,0,0,1,1]},
-        //     {"subject": "PE", "status": [1,0,0,1,0,0]},
-        //     {"subject": "HE", "status": [null,null,null,1,0,0]},
-        //     {"subject": "Computer", "status": [1,0,0,0,0,1]},
-        // ];
 
         $http.get('api/competencies').success(function(data){
             $scope.subject_status = data;
@@ -84,7 +69,7 @@ angular.module('myApp.controllers', []).
     .controller('EditController', ['$scope','$http','$routeParams',function($scope,$http,$routeParams) {
         $scope.grade = parseInt($routeParams.grade);
         $scope.subject = $routeParams.subject;
-        $scope.routeParams = $routeParams;
+        // $scope.routeParams = $routeParams;
         $scope.subject_choices = function(grade) {
             var subjects_in_grades = [
                 ["CLF", "Chinese", "Filipino", "Language", "Math","Reading",            "Social Studies","Music",         "PE",       "Computer"],
@@ -152,11 +137,12 @@ angular.module('myApp.controllers', []).
             }
         };
 
+        $scope.post_data = {};
         $scope.save_these_competencies = function () {
             if ($scope.competencies[$scope.competencies.length - 1].competency == null) {
                 $scope.competencies.splice($scope.competencies.length - 1,1);
             }
-            var post_data = {
+            $scope.post_data = {
                 "grade_level": $scope.grade,
                 "subject": $scope.subject,
                 "total_meetings": $scope.get_total_meetings(),
@@ -164,10 +150,12 @@ angular.module('myApp.controllers', []).
                 "competencies_json": $scope.competencies,
                 "created_by": "Noel"
             };
-
-            $http.post('/api/competencies', post_data).success(function(data){
+            // console
+            $http.post('/api/competencies', $scope.post_data).success(function(data){
                 alert("Thank you. Your data has been saved.");
                 window.location = "#/list";
+            }).error(function(data){
+                console.log(data);
             });
         };
     }]);

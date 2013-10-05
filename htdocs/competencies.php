@@ -11,10 +11,7 @@
       <?php include_once("footer.php"); ?>
 
     </div>
-    <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.1.min.js"><\/script>')</script>-->
-    <script src="js/vendor/jquery-2.0.3.min.js"></script>
-    <script src="js/vendor/bootstrap.min.js"></script>
+    <?php include_once("jquery-bootstrap-js.php"); ?>
     <!--<script src="js/vendor/underscore.min.js"></script>-->
     <script src="js/vendor/angular.min.js"></script>
     <script src="js/competencies/app.js"></script>

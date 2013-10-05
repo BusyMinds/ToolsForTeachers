@@ -5,7 +5,7 @@ CREATE TABLE `competencies` (
   `subject` varchar(16) NOT NULL,
   `teachers` varchar(64) NOT NULL,
   `quarter` tinyint(4) NOT NULL,
-  `competencies` text NOT NULL,
+  `competencies_json` text NOT NULL,
   `total_meetings` tinyint(3) unsigned NOT NULL,
   `max_meetings` tinyint(3) unsigned NOT NULL,
   `created_by` varchar(64) NOT NULL,
