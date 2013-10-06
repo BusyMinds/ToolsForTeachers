@@ -77,6 +77,7 @@ angular.module('myApp.controllers', []).
             $http.get('/api/competencies?grade=' + $routeParams.grade + '&subject=' + $routeParams.subject).success(function(data){
                 console.log(data);
                 $scope.competencies = data.competencies_json;
+                $scope.creator = data.created_by;
             });
         }
 
@@ -147,6 +148,8 @@ angular.module('myApp.controllers', []).
         };
 
         $scope.post_data = {};
+
+        $scope.teachers = ['Noel','Noel2', 'Noel3', 'Flora1','Flora2','Flora3'];
         $scope.save_these_competencies = function () {
             if ($scope.competencies[$scope.competencies.length - 1].competency == null) {
                 $scope.competencies.splice($scope.competencies.length - 1,1);
@@ -157,7 +160,7 @@ angular.module('myApp.controllers', []).
                 "total_meetings": $scope.get_total_meetings(),
                 "max_meetings": $scope.get_max_meetings(),
                 "competencies_json": $scope.competencies,
-                "created_by": "Noel"
+                "created_by": $scope.creator
             };
             // console
             $http.post('/api/competencies', $scope.post_data).success(function(data){

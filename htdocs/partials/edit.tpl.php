@@ -46,15 +46,15 @@
             </div>
           </div>
         </form>
-        <hr>
-        <div class="row">
-          <div class="col-xs-12">
-            <div class="alert alert-info" ng-show="get_max_meetings()">Please plan for <strong>{{get_max_meetings(subject,grade)}} meetings</strong> in the 3rd Quarter.
-              Arrange them in chronological order.</div>
-            <div class="alert alert-danger" ng-show="((get_total_meetings() > get_max_meetings()) && (get_total_meetings() > 1))">You have exceeed the maximum number of meetings allowed.
-              Please recheck. </div>
+          <hr>
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="alert alert-info" ng-show="get_max_meetings()">Please plan for <strong>{{get_max_meetings(subject,grade)}} meetings</strong> in the 3rd Quarter.
+                Arrange them in chronological order.</div>
+              <div class="alert alert-danger" ng-show="((get_total_meetings() > get_max_meetings()) && (get_total_meetings() > 1))">You have exceeed the maximum number of meetings allowed.
+                Please recheck. </div>
+            </div>
           </div>
-        </div>
         <form role="form" ng-show="get_max_meetings()">
           <table class="table table-responsive">
           <thead>
@@ -90,6 +90,15 @@
             </tr>
           </tbody>
           </table>
+          <div class="form-horizontal">
+            <div class="form-group" ng-show="grade">
+              <label for="inputTeacher" class="col-xs-2 control-label">Created by:</label>
+              <div class="col-xs-10">
+                <input type="text" class="form-control" ng-model="creator" typeahead="name for name in teachers | filter:$viewValue | limitTo:8" required>
+              </div>
+            </div>
+          </div>
+          <hr>
           <button type="submit" class="btn btn-primary" ng-click="save_these_competencies()">Save</button>
           <!-- <button type="submit" class="btn btn-primary" data-toggle="modal" href="#saveModal">Save</button> -->
         </form>

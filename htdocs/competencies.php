@@ -14,9 +14,13 @@
     <?php include_once("jquery-bootstrap-js.php"); ?>
     <!--<script src="js/vendor/underscore.min.js"></script>-->
     <script src="js/vendor/angular.min.js"></script>
+    <script src="js/vendor/select2.min.js"></script>
     <script src="js/competencies/app.js"></script>
     <!-- // <script src="js/competencies/services.js"></script> -->
     <script src="js/competencies/controllers.js"></script>
+    <script src="js/vendor/ui-bootstrap-custom-0.6.0.min.js"></script>
+    <script src="js/vendor/ui-bootstrap-custom-tpls-0.6.0.min.js"></script>
+    <!-- // <script src="js/vendor/ui-select2.js"></script> -->
     <!-- // <script src="js/competencies/filters.js"></script> -->
     <!-- // <script src="js/competencies/directives.js"></script> -->
 
