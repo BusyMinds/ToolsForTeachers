@@ -164,7 +164,7 @@ angular.module('myApp.controllers', []).
             };
             // console
             $http.post('/api/competencies', $scope.post_data).success(function(data){
-                alert("Thank you. Your data has been saved.");
+                alert("Thank you. Your changes has been saved. You will now be redirected back to the status page.");
                 window.location = "#/list";
             }).error(function(data){
                 console.log(data);
