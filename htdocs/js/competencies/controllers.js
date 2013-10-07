@@ -31,7 +31,7 @@ angular.module('myApp.controllers', []).
             $scope.overall_status_detail = overall_status().detail;
 
             $scope.status_int_to_string = function (int) {
-                if (int == 0) {
+                if (int === 0) {
                     return "Incomplete";
                 } else if (int > 0) {
                     return "Complete";
@@ -41,7 +41,7 @@ angular.module('myApp.controllers', []).
             };
 
             $scope.status_int_to_class = function (int) {
-                if (int == 0) {
+                if (int === 0) {
                     return "danger text-danger";
                 } else if (int > 0) {
                     return "success text-success";
@@ -51,7 +51,7 @@ angular.module('myApp.controllers', []).
             };
 
             $scope.status_int_to_glyphicon = function (int) {
-                if (int == 0) {
+                if (int === 0) {
                     return "glyphicon glyphicon-thumbs-down";
                 } else if (int > 0) {
                     return "glyphicon glyphicon-thumbs-up";
@@ -82,6 +82,7 @@ angular.module('myApp.controllers', []).
                 console.log(data);
                 $scope.competencies = data.competencies_json;
                 $scope.created_by = data.created_by;
+                $scope.id = data.id;
             });
         }
 
@@ -90,7 +91,7 @@ angular.module('myApp.controllers', []).
         $scope.subject_choices = ["CLF", "Chinese", "Filipino", "Language", "Math","Reading", "Science", "Social Studies","Music", "Arts", "PE", "HE", "Computer"];
 
         $scope.get_grades_for_subject = function () {
-            if ($scope.subject == null) {
+            if (!$scope.subject) {
                 return null;
             } else {
                 return get_grades_for_subject($scope.subject);
@@ -100,7 +101,7 @@ angular.module('myApp.controllers', []).
         // $scope.grade_choices = $scope.get_grades_for_subject();
 
         $scope.get_max_meetings = function () {
-            if ($scope.subject == null || $scope.grade == null) {
+            if (!$scope.subject || !$scope.grade) {
                 return null;
             } else {
                 return get_subject_schedule($scope.subject)[$scope.grade - 1] * 5;
@@ -137,7 +138,7 @@ angular.module('myApp.controllers', []).
         };
 
         var trim_competencies = function () {
-            if (($scope.competencies.length > 1) && ($scope.competencies[$scope.competencies.length - 1].competency == null)) {
+            if ($scope.competencies.length > 1 && !$scope.competencies[$scope.competencies.length - 1].competency) {
                 $scope.competencies.splice($scope.competencies.length - 1,1);
             }
             return $scope.competencies.length;
@@ -170,7 +171,7 @@ angular.module('myApp.controllers', []).
             }
             are_inputs_valid = true;
             angular.forEach(items_to_validate,function(value){
-                if (value == null || value == undefined) {
+                if (!value) {
                     are_inputs_valid = false;
                 }
             });
@@ -188,17 +189,29 @@ angular.module('myApp.controllers', []).
                     "teachers": get_subject_teachers($scope.subject,$scope.grade),
                     "created_by": $scope.created_by
                 };
-                console.log($scope.post_data);
+                // console.log($scope.post_data);
                 $http.post('/api/competencies', $scope.post_data).success(function(data){
                     alert("Thank you. Your changes has been saved. You will now be redirected back to the status page.");
                     window.location = "#/list";
                 }).error(function(data){
+                    alert("There was an error. Your changes were NOT saved! I'm sorry. Please try saving it again.");
                     console.log(data);
                 });
             } else {
                 // alert('Entries are invalid.');
                 console.log('Entries are invalid.');
             }
+        };
+
+        $scope.delete_these_competencies = function () {
+            $http.delete('/api/competencies?grade=' + $scope.grade + '&subject=' + $scope.subject).success(function(data){
+                alert("This entry has been successfully deleted. You will now be redirected back to the status page.");
+                window.location = "#/list";
+                console.log(data);
+            }).error(function(data){
+                alert("There was an error. I'm sorry. Please try deleting it again.");
+                console.log(data);
+            });
         };
 
         $scope.get_subject_teachers = function (subject, grade) {

@@ -107,7 +107,8 @@
               </div>
             </div>
             <hr>
-            <button type="submit" class="btn btn-primary" ng-click="save_these_competencies()" ng-disabled="(are_entries_valid() == false)">Save</button>
+            <button type="submit" class="btn btn-primary" ng-click="save_these_competencies()" ng-disabled="(!are_entries_valid())">Save</button>
+            <button type="button" class="btn btn-danger" ng-click="delete_these_competencies()" ng-disabled="(!id)">Delete</button>
             <!-- <button type="submit" class="btn btn-primary" data-toggle="modal" href="#saveModal">Save</button> -->
           </div>
         </form>
@@ -115,3 +116,4 @@
     </div>
   </div>
 </div>
+<pre>{{id}}</pre>
