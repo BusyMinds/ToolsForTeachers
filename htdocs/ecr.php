@@ -8,8 +8,8 @@
       <div class="jumbotron">
         <h1><strong class="text-primary">Electronic Class Record</strong></h1>
         <p class="lead">
-          Latest version: <strong class="text-info">930</strong><br>
-          Last updated: <strong class="text-info">September 30, 2013</strong><br>
+          Latest version: <span class="text-info">930</span><br>
+          Last updated: <span class="text-info">September 30, 2013</span><br>
         </p>
         <ul class="list-inline">
           <li><a class="btn btn-primary btn-lg" href="#downloads"><span class="glyphicon glyphicon-download-alt"></span> Go to downloads</a></li>

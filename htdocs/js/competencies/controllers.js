@@ -62,7 +62,7 @@ angular.module('myApp.controllers', []).
 
             $scope.get_subject_teachers = function (subject, grade) {
                 if ((subject != null) && (grade != null)) {
-                    return get_subject_teachers(subject, grade).join(", ");
+                    return get_subject_teachers(subject, grade).join("<br>");
                 }
                     return "";
             };
