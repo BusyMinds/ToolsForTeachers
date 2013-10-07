@@ -14,6 +14,7 @@
     <?php include_once("jquery-bootstrap-js.php"); ?>
     <!--<script src="js/vendor/underscore.min.js"></script>-->
     <script src="js/vendor/angular.min.js"></script>
+    <script src="js/competencies/globals.js"></script>
     <script src="js/competencies/app.js"></script>
     <!-- // <script src="js/competencies/services.js"></script> -->
     <script src="js/competencies/controllers.js"></script>

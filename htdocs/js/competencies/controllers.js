@@ -59,6 +59,10 @@ angular.module('myApp.controllers', []).
                     return "";
                 }
             };
+
+            $scope.get_subject_teachers = function (subject, grade) {
+                return get_subject_teachers(subject, grade).join(", ");
+            };
         });
 
 
