@@ -61,7 +61,10 @@ angular.module('myApp.controllers', []).
             };
 
             $scope.get_subject_teachers = function (subject, grade) {
-                return get_subject_teachers(subject, grade).join(", ");
+                if ((subject != null) && (grade != null)) {
+                    return get_subject_teachers(subject, grade).join(", ");
+                }
+                    return "";
             };
         });
 
@@ -84,39 +87,23 @@ angular.module('myApp.controllers', []).
 
 
         // $scope.routeParams = $routeParams;
-        $scope.subject_choices = function(grade) {
-            var subjects_in_grades = [
-                ["CLF", "Chinese", "Filipino", "Language", "Math","Reading",            "Social Studies","Music",         "PE",       "Computer"],
-                ["CLF", "Chinese", "Filipino", "Language", "Math","Reading",            "Social Studies",         "Arts", "PE",       "Computer"],
-                ["CLF", "Chinese", "Filipino", "Language", "Math","Reading", "Science", "Social Studies",         "Arts", "PE",       "Computer"],
-                ["CLF", "Chinese", "Filipino", "Language", "Math","Reading", "Science", "Social Studies","Music", "Arts", "PE", "HE", "Computer"],
-                ["CLF", "Chinese", "Filipino", "Language", "Math","Reading", "Science", "Social Studies","Music", "Arts", "PE", "HE", "Computer"],
-                ["CLF", "Chinese", "Filipino", "Language", "Math","Reading", "Science", "Social Studies","Music", "Arts", "PE", "HE", "Computer"]
-            ];
-            return subjects_in_grades[grade - 1];
+        $scope.subject_choices = ["CLF", "Chinese", "Filipino", "Language", "Math","Reading", "Science", "Social Studies","Music", "Arts", "PE", "HE", "Computer"];
+
+        $scope.get_grades_for_subject = function () {
+            if ($scope.subject == null) {
+                return null;
+            } else {
+                return get_grades_for_subject($scope.subject);
+            }
         };
 
+        // $scope.grade_choices = $scope.get_grades_for_subject();
 
         $scope.get_max_meetings = function () {
             if ($scope.subject == null || $scope.grade == null) {
                 return null;
             } else {
-                var schedule = {
-                    "CLF": [3,3,3,3,3,3],
-                    "Chinese": [4,4,4,4,4,4],
-                    "Filipino": [3,3,3,5,5,5],
-                    "Language": [4,4,4,3,3,3],
-                    "Math": [5,5,5,5,5,5],
-                    "Reading": [4,4,4,4,4,4],
-                    "Science": [0,0,5,5,5,5],
-                    "Social Studies": [4,4,4,4,4,4],
-                    "Music": [1,0,0,1,1,1],
-                    "Arts": [0,1,1,1,1,1],
-                    "PE": [1,1,1,1,1,1],
-                    "HE": [0,0,0,1,1,1],
-                    "Computer": [1,1,1,1,1,1]
-                };
-                return schedule[$scope.subject][$scope.grade - 1] * 5;
+                return get_subject_schedule($scope.subject)[$scope.grade - 1] * 5;
             }
         };
 
@@ -198,6 +185,7 @@ angular.module('myApp.controllers', []).
                     "total_meetings": $scope.get_total_meetings(),
                     "max_meetings": $scope.get_max_meetings(),
                     "competencies_json": $scope.competencies,
+                    "teachers": get_subject_teachers($scope.subject,$scope.grade),
                     "created_by": $scope.created_by
                 };
                 console.log($scope.post_data);
@@ -211,5 +199,12 @@ angular.module('myApp.controllers', []).
                 // alert('Entries are invalid.');
                 console.log('Entries are invalid.');
             }
+        };
+
+        $scope.get_subject_teachers = function (subject, grade) {
+            if ((subject != null) && (grade != null)) {
+                return get_subject_teachers(subject, grade).join(", ");
+            }
+                return "";
         };
     }]);

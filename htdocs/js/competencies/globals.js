@@ -108,3 +108,34 @@ var get_subject_teachers = function (subject, grade) {
     return subjects_have_teachers[subject][grade - 1];
 };
 
+var get_subject_schedule = function (subject) {
+    var schedule = {
+        "CLF": [3,3,3,3,3,3],
+        "Chinese": [4,4,4,4,4,4],
+        "Filipino": [3,3,3,5,5,5],
+        "Language": [4,4,4,3,3,3],
+        "Math": [5,5,5,5,5,5],
+        "Reading": [4,4,4,4,4,4],
+        "Science": [0,0,5,5,5,5],
+        "Social Studies": [4,4,4,4,4,4],
+        "Music": [1,0,0,1,1,1],
+        "Arts": [0,1,1,1,1,1],
+        "PE": [1,1,1,1,1,1],
+        "HE": [0,0,0,1,1,1],
+        "Computer": [1,1,1,1,1,1]
+    };
+    return schedule[subject];
+};
+
+var get_grades_for_subject = function (subject) {
+    var grade_choices = [];
+    if (subject) {
+        for (var i = 0; i < get_subject_schedule(subject).length; i++) {
+            if (get_subject_schedule(subject)[i] > 0) {
+                grade_choices.push(i + 1);
+            }
+        }
+    }
+    // return get_subject_schedule(subject);
+    return grade_choices;
+};

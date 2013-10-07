@@ -28,24 +28,25 @@
         <h3 class="panel-title">Edit Competencies</h3>
       </div>
       <div class="panel-body">
-        <form class="form-horizontal" role="form">
-          <div class="form-group">
-            <label for="inputGrade" class="col-xs-2 control-label">Grade:</label>
-            <div class="col-xs-10">
-              <select id="inputGrade" class="form-control" ng-model="grade" ng-options="n for n in [1,2,3,4,5,6]" required>
-                <option value="">Choose a grade level</option>
-              </select>
+        <form name="frmCompetencies" class="form-horizontal" role="form">
+          <div class="form-horizontal">
+            <div class="form-group">
+              <label for="inputSubject" class="col-xs-2 control-label">Subject:</label>
+              <div class="col-xs-10">
+                <select id="inputSubject" class="form-control" ng-model="subject" ng-options="choice for choice in subject_choices" required>
+                  <option value="">Choose a subject</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group" ng-show="subject">
+              <label for="inputGrade" class="col-xs-2 control-label">Grade:</label>
+              <div class="col-xs-10">
+                <select id="inputGrade" class="form-control" ng-model="grade" ng-options="n for n in get_grades_for_subject()" required>
+                  <option value="">Choose a grade level</option>
+                </select>
+              </div>
             </div>
           </div>
-          <div class="form-group" ng-show="grade">
-            <label for="inputSubject" class="col-xs-2 control-label">Subject:</label>
-            <div class="col-xs-10">
-              <select id="inputSubject" class="form-control" ng-model="subject" ng-options="choice for choice in subject_choices(grade)" required>
-                <option value="">Choose a subject</option>
-              </select>
-            </div>
-          </div>
-        </form>
           <hr>
           <div class="row">
             <div class="col-xs-12">
@@ -55,52 +56,60 @@
                 Please recheck. </div>
             </div>
           </div>
-        <form name="frmCompetencies" role="form" ng-show="get_max_meetings()">
-          <table class="table table-responsive">
-          <thead>
-            <th class="col-xs-9">Competencies</th>
-            <th class="col-xs-2">Meeting(s)</th>
-            <th class="col-xs-1">Delete?</th>
-          </thead>
-          <tbody>
-            <tr ng-repeat="item in competencies">
-              <td>
-                <label class="sr-only" for="inputCompetency{{$index}}">{{item.competency}}</label>
-                <input type="text" class="form-control" id="inputCompetency{{$index}}" placeholder="Competency" ng-model="item.competency" required>
-              </td>
-              <td>
-                <label class="sr-only" for="inputDuration{{$index}}">Duration</label>
-                <input type="number" min="1" max="{{get_remaining_meetings(item.duration)}}" class="form-control" id="inputDuration{{$index}}" value="1" ng-model="item.duration" required>
-              </td>
-              <td>
-                <button type="button" class="btn btn-default" ng-click="delete_this_competency($index)">
-                  <span class="glyphicon glyphicon-trash"></span>
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <button class="btn btn-default" ng-click="add_new_competency()">Add</button>
-              </td>
-              <td colspan="2">
-                <span class="text-info">
-                  <ng-pluralize count="get_total_meetings()" when="{'one': '1 meeting','other': '{} meetings'}"></ng-pluralize>
-                </span>
-              </td>
-            </tr>
-          </tbody>
-          </table>
-          <div class="form-horizontal">
-            <div class="form-group" ng-show="grade">
-              <label for="inputTeacher" class="col-xs-2 control-label">Created by:</label>
-              <div class="col-xs-10">
-                <input type="text" class="form-control" ng-model="created_by" placeholder="Type your name" typeahead="name for name in teachers | filter:$viewValue | limitTo:8" required>
+          <div ng-show="get_max_meetings()">
+            <table class="table table-responsive">
+            <thead>
+              <th class="col-xs-9">Competencies</th>
+              <th class="col-xs-2">Meeting(s)</th>
+              <th class="col-xs-1">Delete?</th>
+            </thead>
+            <tbody>
+              <tr ng-repeat="item in competencies">
+                <td>
+                  <label class="sr-only" for="inputCompetency{{$index}}">{{item.competency}}</label>
+                  <input type="text" class="form-control" id="inputCompetency{{$index}}" placeholder="Competency" ng-model="item.competency" required>
+                </td>
+                <td>
+                  <label class="sr-only" for="inputDuration{{$index}}">Duration</label>
+                  <input type="number" min="1" max="{{get_remaining_meetings(item.duration)}}" class="form-control" id="inputDuration{{$index}}" value="1" ng-model="item.duration" required>
+                </td>
+                <td>
+                  <button type="button" class="btn btn-default" ng-click="delete_this_competency($index)">
+                    <span class="glyphicon glyphicon-trash"></span>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <button class="btn btn-default" ng-click="add_new_competency()">Add</button>
+                </td>
+                <td colspan="2">
+                  <span class="text-info">
+                    <ng-pluralize count="get_total_meetings()" when="{'one': '1 meeting','other': '{} meetings'}"></ng-pluralize>
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+            </table>
+            <div class="form-horizontal">
+              <div class="form-group">
+                <label class="col-xs-2 control-label">Teacher(s):</label>
+                <div class="col-xs-10">
+                  <!-- <p class="form-control-static">{{get_subject_teachers(subject, grade)}}</p> -->
+                  <input class="form-control" id="disabledInput" type="text" placeholder="{{get_subject_teachers(subject, grade)}}" disabled>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputTeacher" class="col-xs-2 control-label">Created by:</label>
+                <div class="col-xs-10">
+                  <input type="text" class="form-control" ng-model="created_by" placeholder="Type your name" typeahead="name for name in teachers | filter:$viewValue | limitTo:8" required>
+                </div>
               </div>
             </div>
+            <hr>
+            <button type="submit" class="btn btn-primary" ng-click="save_these_competencies()" ng-disabled="(are_entries_valid() == false)">Save</button>
+            <!-- <button type="submit" class="btn btn-primary" data-toggle="modal" href="#saveModal">Save</button> -->
           </div>
-          <hr>
-          <button type="submit" class="btn btn-primary" ng-click="save_these_competencies()" ng-disabled="(are_entries_valid() == false)">Save</button>
-          <!-- <button type="submit" class="btn btn-primary" data-toggle="modal" href="#saveModal">Save</button> -->
         </form>
       </div>
     </div>
