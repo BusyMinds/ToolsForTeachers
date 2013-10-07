@@ -67,19 +67,20 @@ angular.module('myApp.controllers', []).
 
     }])
     .controller('EditController', ['$scope','$http','$routeParams',function($scope,$http,$routeParams) {
-
         $scope.competencies = [{"competency": null, "duration": 1}];
-
-        if ($routeParams != {}) {
+        // $scope.created_by = "";
+        if ($routeParams.grade != null && $routeParams.subject != null) {
+            // console.log($routeParams);
             $scope.grade = parseInt($routeParams.grade);
             $scope.subject = $routeParams.subject;
 
             $http.get('/api/competencies?grade=' + $routeParams.grade + '&subject=' + $routeParams.subject).success(function(data){
                 console.log(data);
                 $scope.competencies = data.competencies_json;
-                $scope.creator = data.created_by;
+                $scope.created_by = data.created_by;
             });
         }
+
 
         // $scope.routeParams = $routeParams;
         $scope.subject_choices = function(grade) {
@@ -147,27 +148,67 @@ angular.module('myApp.controllers', []).
             }
         };
 
-        $scope.post_data = {};
-
-        $scope.teachers = ['Noel','Noel2', 'Noel3', 'Flora1','Flora2','Flora3'];
-        $scope.save_these_competencies = function () {
-            if ($scope.competencies[$scope.competencies.length - 1].competency == null) {
+        var trim_competencies = function () {
+            if (($scope.competencies.length > 1) && ($scope.competencies[$scope.competencies.length - 1].competency == null)) {
                 $scope.competencies.splice($scope.competencies.length - 1,1);
             }
-            $scope.post_data = {
-                "grade_level": $scope.grade,
-                "subject": $scope.subject,
-                "total_meetings": $scope.get_total_meetings(),
-                "max_meetings": $scope.get_max_meetings(),
-                "competencies_json": $scope.competencies,
-                "created_by": $scope.creator
-            };
-            // console
-            $http.post('/api/competencies', $scope.post_data).success(function(data){
-                alert("Thank you. Your changes has been saved. You will now be redirected back to the status page.");
-                window.location = "#/list";
-            }).error(function(data){
-                console.log(data);
+            return $scope.competencies.length;
+        }
+
+        $scope.post_data = {};
+
+        $scope.teachers = ["Melanie Abello","Michael David John Abello","Alex Carl Almeda","Avenger Alob Jr.",
+            "Marley Arbon","Mary Immaculate Aringay","John Symon Bailon","Mylene Bersabal","Vanessa Caballero",
+            "Rachel Cabuco","Rizza Jane Cañete","Priscilliano Capangpangan","Charlito Codizar","Fidelis Cuay",
+            "Mylene Louise Curso","Jasmin Del Mar","Glen Delator","April Dawn Dizon","Christine Duran",
+            "Reydon Encinares","Virginia Escosora","Ma. Filipina Evano","Mitos Gonzales","Ma. Antonia Huan",
+            "Krizmagnum Ibaos","Alven Rey Labadan","Pamela Labadan","Regine Lagrimas","Rosie Fe Legaspino",
+            "Estelita Lim","Sheng Liu","Noel Martin Llevares","Marybeth Macarayan","Ma. Rubelyn Macion",
+            "Prety Maloloy-on","Jennifer Manatad","Marvi Maquilan","Mary Lourdes Melloria","Marisse Paraoan",
+            "Racel Parilla","Clark Ian Pelen","Ma. Elizabeth Pelen","Avecenna Peteros","Rohaiba Radiamoda",
+            "Maria Christine Ramirez","Bernice Marsha Reyes","Mildred Rios","Mary Jane Rodrigo",
+            "Jacqueline Therese Sanchez","Concepcion Agnes Sarza","May Sastre","Estela Serrano",
+            "Anthony Hejie Suralta","Nilda Torregosa","Maria Lisandra Tugaoen","Nancy Uy","Eve Vecina",
+            "Jean Eleonor Velasco","Mae Divina Velasco","Bei Yao","Cecilia Yap","Grace Yap","Susana Yap",
+            "Paul John Ylanan","Xiaoyan Zhang","Annie Abucay","Lea Amores"];
+
+        $scope.are_entries_valid = function () {
+            var items_to_validate = [$scope.grade,$scope.subject,$scope.created_by];
+            var are_competencies_valid, are_inputs_valid
+            if (($scope.competencies.length > 0) && ($scope.competencies[0].competency != null)) {
+                are_competencies_valid = true;
+            } else {
+                are_competencies_valid = false;
+            }
+            are_inputs_valid = true;
+            angular.forEach(items_to_validate,function(value){
+                if (value == null || value == undefined) {
+                    are_inputs_valid = false;
+                }
             });
+            return (are_competencies_valid && are_inputs_valid);
+        };
+
+        $scope.save_these_competencies = function () {
+            if ((trim_competencies() > 0) && ($scope.are_entries_valid())) {
+                $scope.post_data = {
+                    "grade_level": $scope.grade,
+                    "subject": $scope.subject,
+                    "total_meetings": $scope.get_total_meetings(),
+                    "max_meetings": $scope.get_max_meetings(),
+                    "competencies_json": $scope.competencies,
+                    "created_by": $scope.created_by
+                };
+                console.log($scope.post_data);
+                $http.post('/api/competencies', $scope.post_data).success(function(data){
+                    alert("Thank you. Your changes has been saved. You will now be redirected back to the status page.");
+                    window.location = "#/list";
+                }).error(function(data){
+                    console.log(data);
+                });
+            } else {
+                // alert('Entries are invalid.');
+                console.log('Entries are invalid.');
+            }
         };
     }]);

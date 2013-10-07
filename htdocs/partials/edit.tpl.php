@@ -55,7 +55,7 @@
                 Please recheck. </div>
             </div>
           </div>
-        <form role="form" ng-show="get_max_meetings()">
+        <form name="frmCompetencies" role="form" ng-show="get_max_meetings()">
           <table class="table table-responsive">
           <thead>
             <th class="col-xs-9">Competencies</th>
@@ -94,16 +94,17 @@
             <div class="form-group" ng-show="grade">
               <label for="inputTeacher" class="col-xs-2 control-label">Created by:</label>
               <div class="col-xs-10">
-                <input type="text" class="form-control" ng-model="creator" typeahead="name for name in teachers | filter:$viewValue | limitTo:8" required>
+                <input type="text" class="form-control" ng-model="created_by" placeholder="Type your name" typeahead="name for name in teachers | filter:$viewValue | limitTo:8" required>
               </div>
             </div>
           </div>
           <hr>
-          <button type="submit" class="btn btn-primary" ng-click="save_these_competencies()">Save</button>
+          <button type="submit" class="btn btn-primary" ng-click="save_these_competencies()" ng-disabled="(are_entries_valid() == false)">Save</button>
           <!-- <button type="submit" class="btn btn-primary" data-toggle="modal" href="#saveModal">Save</button> -->
         </form>
       </div>
     </div>
   </div>
 </div>
-<pre>{{post_data | json}}</pre>
+<pre>{{created_by}}</pre>
+<pre>{{are_entries_valid()}}</pre>
