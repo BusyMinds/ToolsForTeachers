@@ -107,7 +107,7 @@
               </div>
             </div>
             <hr>
-            <button type="submit" class="btn btn-primary" ng-click="save_these_competencies()" ng-disabled="(!are_entries_valid())">Save</button>
+            <button type="submit" class="btn btn-primary" ng-click="save_these_competencies()" ng-disabled="(!are_entries_valid())"><span class="glyphicon glyphicon-save"></span> Save</button>
             <button type="button" class="btn btn-danger" ng-click="delete_these_competencies()" ng-disabled="(!id)"><span class="glyphicon glyphicon-trash"></span> Delete</button>
             <!-- <button type="submit" class="btn btn-primary" data-toggle="modal" href="#saveModal">Save</button> -->
           </div>
