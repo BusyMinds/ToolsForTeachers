@@ -34,7 +34,7 @@
             </div>
             <div class="panel-body">
               <p>Submit your list of competencies for the next Quarter.</p>
-              <a class="btn btn-default" href="/competencies"><span class="glyphicon glyphicon-tasks"></span> Go to Competency Planner</a>
+              <a class="btn btn-default" href="/competencies"><span class="glyphicon glyphicon-check"></span> Go to Competency Planner</a>
             </div>
           </div>
         </div>

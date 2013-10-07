@@ -40,7 +40,7 @@
         <?php
         echo ((isset($is_competencies)) ? "<li class=\"active\">" : "<li>")
         ?>
-        <a href="/competencies"><span class="glyphicon glyphicon-tasks"></span> Competencies</a></li>
+        <a href="/competencies"><span class="glyphicon glyphicon-check"></span> Competencies</a></li>
       </ul>
     </div><!--/.nav-collapse -->
   </div>

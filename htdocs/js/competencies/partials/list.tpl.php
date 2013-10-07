@@ -14,7 +14,7 @@
         </p>
 
         <p>To submit your own competencies for your classes, click the button below.</p>
-        <a class="btn btn-primary btn-lg" href="#/edit"><span class="glyphicon glyphicon-tasks"></span> Edit Competencies</a>
+        <a class="btn btn-primary btn-lg" href="#/edit"><span class="glyphicon glyphicon-check"></span> Edit Competencies</a>
       </div>
     </div>
   </div>
