@@ -31,35 +31,32 @@ angular.module('myApp.controllers', []).
             $scope.overall_status_detail = overall_status().detail;
 
             $scope.status_int_to_string = function (int) {
-                switch (int) {
-                    case null:
-                        return "";
-                    case 0:
-                        return "Incomplete";
-                    case 1:
-                        return "Complete";
+                if (int == 0) {
+                    return "Incomplete";
+                } else if (int > 0) {
+                    return "Complete";
+                } else {
+                    return "--";
                 }
             };
 
             $scope.status_int_to_class = function (int) {
-                switch (int) {
-                    case null:
-                        return "";
-                    case 0:
-                        return "danger text-danger";
-                    case 1:
-                        return "success text-success";
+                if (int == 0) {
+                    return "danger text-danger";
+                } else if (int > 0) {
+                    return "success text-success";
+                } else {
+                    return "";
                 }
             };
 
             $scope.status_int_to_glyphicon = function (int) {
-                switch (int) {
-                    case null:
-                        return null;
-                    case 0:
-                        return "glyphicon glyphicon-thumbs-down";
-                    case 1:
-                        return "glyphicon glyphicon-thumbs-up";
+                if (int == 0) {
+                    return "glyphicon glyphicon-thumbs-down";
+                } else if (int > 0) {
+                    return "glyphicon glyphicon-thumbs-up";
+                } else {
+                    return "";
                 }
             };
         });

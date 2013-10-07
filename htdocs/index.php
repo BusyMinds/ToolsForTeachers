@@ -75,12 +75,14 @@ $app->get('/api/competencies', function() use($app) {
             $status['subject'] = $subject;
             $status['status'] = $grades;
             $grade_levels = ORM::for_table('competencies')
-                ->raw_query('SELECT grade_level, 1 AS status FROM competencies WHERE id IN (
+                ->raw_query('SELECT grade_level, competencies_json, 1 AS status FROM competencies WHERE id IN (
                     SELECT max(id) FROM competencies GROUP BY subject, grade_level)
                     AND subject = :subject', array('subject' => $subject))
                 ->find_array();
             foreach($grade_levels as $grade_level) {
-                $status['status'][$grade_level['grade_level'] - 1] = 1;
+                $competency_count = json_decode($grade_level['competencies_json'],true);
+                $status['status'][$grade_level['grade_level'] - 1] = count($competency_count);
+                // $status['competency_count'][$grade_level['grade_level'] - 1] = len(json_decode($grade_level['competencies_json'],true));
             }
             $subject_status[] = $status;
         }
