@@ -101,7 +101,7 @@ $app->post('/api/competencies', function() use($app) {
     $competency = ORM::for_table('competencies')->create();
     $competency->grade_level = $body['grade_level'];
     $competency->subject = $body['subject'];
-    $competency->teachers = implode(", ", $body['teachers']);
+    $competency->teachers = implode(", ", json_decode($body['teachers'], true));
     $competency->quarter = 3;
     $competency->competencies_json = json_encode($body['competencies_json']);
     $competency->total_meetings = $body['total_meetings'];

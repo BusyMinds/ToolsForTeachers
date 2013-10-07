@@ -4,6 +4,7 @@ web1: #component type & number
     - htdocs/logs
     - htdocs/files
   document_root: htdocs
+  php_version: 5.4.14
   php_date_timezone: "Asia/Manila"
   php_extensions:
     - json
