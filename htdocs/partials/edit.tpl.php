@@ -106,5 +106,3 @@
     </div>
   </div>
 </div>
-<pre>{{created_by}}</pre>
-<pre>{{are_entries_valid()}}</pre>
