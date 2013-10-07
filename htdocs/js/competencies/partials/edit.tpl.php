@@ -14,7 +14,7 @@
           <li>The number of estimated allowed meetings will be shown to you. Plan your number of meetings according to that estimate.</li>
           <li>Enter one competency in each line and its corresponding number of meetings.</li>
           <li>To add another competency, click on the <code>Add</code> button or press the <code>Enter</code> key.</li>
-          <li>To delete a competency, click on its corresponding <code>Trash</code> (<span class="glyphicon glyphicon-trash"></span>) button.</li>
+          <li>To delete a competency, click on its corresponding <code>Remove</code> (<span class="glyphicon glyphicon-remove"></span>) button.</li>
           <li>Click <code>Save</code> when you're ready to save it.</li>
           <li>If it is saved successfully, a message box will appear telling you that it was saved successfully.</li>
           <li>Finally, you'll be redirected back to the status page where you should see the status of your subject and grade level updated.</li>
@@ -61,7 +61,7 @@
             <thead>
               <th class="col-xs-9">Competencies</th>
               <th class="col-xs-2">Meeting(s)</th>
-              <th class="col-xs-1">Delete?</th>
+              <th class="col-xs-1">Remove?</th>
             </thead>
             <tbody>
               <tr ng-repeat="item in competencies">
@@ -75,7 +75,7 @@
                 </td>
                 <td>
                   <button type="button" class="btn btn-default" ng-click="delete_this_competency($index)">
-                    <span class="glyphicon glyphicon-trash"></span>
+                    <span class="glyphicon glyphicon-remove"></span>
                   </button>
                 </td>
               </tr>
@@ -108,7 +108,7 @@
             </div>
             <hr>
             <button type="submit" class="btn btn-primary" ng-click="save_these_competencies()" ng-disabled="(!are_entries_valid())">Save</button>
-            <button type="button" class="btn btn-danger" ng-click="delete_these_competencies()" ng-disabled="(!id)">Delete</button>
+            <button type="button" class="btn btn-danger" ng-click="delete_these_competencies()" ng-disabled="(!id)"><span class="glyphicon glyphicon-trash"></span> Delete</button>
             <!-- <button type="submit" class="btn btn-primary" data-toggle="modal" href="#saveModal">Save</button> -->
           </div>
         </form>
