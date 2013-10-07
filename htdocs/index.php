@@ -48,8 +48,8 @@ $app->get('/api/competencies', function() use($app) {
     $subject = $app->request()->get('subject');
     if (($grade) && ($subject)) {
         $competencies_status = ORM::for_table('competencies')
-            ->raw_query('SELECT grade_level, competencies_json, subject, created_by, created_at FROM competencies WHERE id IN (
-                SELECT max(id) FROM competencies GROUP BY concat(grade_level, subject)
+            ->raw_query('SELECT id, grade_level, competencies_json, subject, created_by, created_at FROM competencies WHERE id IN (
+                SELECT max(id) FROM competencies WHERE is_active = 1 GROUP BY concat(grade_level, subject)
                 ) AND subject = :subject AND grade_level = :grade',array('subject' => $subject, 'grade' => $grade))->find_array();
         $competencies_status[0]['competencies_json'] = json_decode($competencies_status[0]['competencies_json'],true);
         $competencies_status = $competencies_status[0];
@@ -76,7 +76,7 @@ $app->get('/api/competencies', function() use($app) {
             $status['status'] = $grades;
             $grade_levels = ORM::for_table('competencies')
                 ->raw_query('SELECT grade_level, competencies_json, 1 AS status FROM competencies WHERE id IN (
-                    SELECT max(id) FROM competencies GROUP BY subject, grade_level)
+                    SELECT max(id) FROM competencies WHERE is_active = 1 GROUP BY subject, grade_level)
                     AND subject = :subject', array('subject' => $subject))
                 ->find_array();
             foreach($grade_levels as $grade_level) {
@@ -101,7 +101,7 @@ $app->post('/api/competencies', function() use($app) {
     $competency = ORM::for_table('competencies')->create();
     $competency->grade_level = $body['grade_level'];
     $competency->subject = $body['subject'];
-    $competency->teachers = $body['teachers'];
+    $competency->teachers = implode(", ", $body['teachers']);
     $competency->quarter = 3;
     $competency->competencies_json = json_encode($body['competencies_json']);
     $competency->total_meetings = $body['total_meetings'];
@@ -112,4 +112,25 @@ $app->post('/api/competencies', function() use($app) {
     echo json_encode(array("status" => "success", "id" => $competency->id()));
 });
 
+$app->delete('/api/competencies', function() use($app) {
+
+    connect_to_db();
+    $res = $app->response();
+    $res['Content-Type'] = 'application/json';
+    $grade = $app->request()->get('grade');
+    $subject = $app->request()->get('subject');
+
+    // $body = json_decode($app->request()->getBody(),true);
+
+    $competency = ORM::for_table('competencies')->where('subject',$subject)->where('grade_level',$grade)->find_many();
+    $competency->set('is_active',0);
+    $competency->save();
+    // print_r($competency);
+
+    echo json_encode(array("status" => "success", $competency));
+});
+
+$app->get('/phpinfo',function () use ($app) {
+    phpinfo();
+});
 $app->run();
