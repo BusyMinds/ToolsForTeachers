@@ -107,12 +107,10 @@
       </div>
 
       <?php include_once("disqus.php"); ?>
-      <div class="footer">
-        <p>&copy; SHS-AdC ICT Team</p>
-      </div>
+      <?php include_once("footer.php"); ?>
 
     </div>
-    <?php include_once("jquery-bootstrap-js.php"); ?>
+    <?php include_once("common-includes.js.php"); ?>
     <?php include_once("analyticstracking.php"); ?>
   </body>
 </html>
