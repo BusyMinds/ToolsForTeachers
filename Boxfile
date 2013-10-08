@@ -3,6 +3,7 @@ web1: #component type & number
   shared_writable_dirs:
     - htdocs/logs
     - htdocs/files
+    - htdocs/vendor/meenie/munee/cache
   document_root: htdocs
   php_version: 5.4.14
   php_date_timezone: "Asia/Manila"
