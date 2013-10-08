@@ -13,7 +13,7 @@
     </div>
     <?php include_once("common-includes.js.php"); ?>
     <!--<script src="js/vendor/underscore.min.js"></script>-->
-    <script src="js/vendor/angular.min.js?minify=true"></script>
+    <script src="js/vendor/angular.min.js"></script>
     <script src="js/competencies/globals.js?minify=true"></script>
     <script src="js/competencies/app.js?minify=true"></script>
     <!-- // <script src="js/competencies/services.js"></script> -->
