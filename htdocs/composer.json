@@ -1,6 +1,7 @@
 {
-    "require": {
-        "slim/slim": "2.*",
-	"j4mie/idiorm": "*"
+  "require": {
+    "slim/slim": "2.*",
+    "j4mie/idiorm": "*",
+    "meenie/Munee": "*"
     }
 }
