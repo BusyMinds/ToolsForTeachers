@@ -2,91 +2,98 @@
 
 /* Controllers */
 
-angular.module('myApp.controllers', []).
-    controller('ListController', ['$scope','$http',function($scope,$http) {
+angular.module('myApp.controllers', [])
+    .controller('ListController', ['$scope', '$http', function ($scope, $http) {
 
-        $http.get('api/competencies').success(function(data){
-            $scope.subject_status = data;
+        $http.get('api/competencies')
+            .success(function (data){
+                $scope.subject_status = data;
 
-            var overall_status = function () {
-                var sum = 0;
-                var total_competencies = 70;
-                var percentage;
-                for (var i = 0; i < $scope.subject_status.length; i++) {
-                    for (var j = 0; j < $scope.subject_status[i].status.length; j++) {
-                        if ($scope.subject_status[i].status[j]) {
-                            // sum += $scope.subject_status[i].status[j];
-                            sum++;
+                var overall_status = function () {
+                    var sum = 0;
+                    var total_competencies = 70;
+                    var percentage;
+                    for (var i = 0; i < $scope.subject_status.length; i++) {
+                        for (var j = 0; j < $scope.subject_status[i].status.length; j++) {
+                            if ($scope.subject_status[i].status[j]) {
+                                // sum += $scope.subject_status[i].status[j];
+                                sum++;
+                            }
                         }
                     }
-                }
-                percentage = sum * 100 / total_competencies;
+                    percentage = sum * 100 / total_competencies;
 
-                return {
-                    "percentage": percentage.toPrecision(2).toString() + '%',
-                    "detail": '(' + sum.toString() + ' out of ' + total_competencies.toString() + ')',
+                    return {
+                        "percentage": percentage.toPrecision(2).toString() + '%',
+                        "detail": '(' + sum.toString() + ' out of ' + total_competencies.toString() + ')',
+                    };
                 };
-            };
 
-            $scope.overall_status_percentage = overall_status().percentage;
-            $scope.overall_status_detail = overall_status().detail;
+                $scope.overall_status_percentage = overall_status().percentage;
+                $scope.overall_status_detail = overall_status().detail;
 
-            $scope.status_int_to_string = function (int) {
-                if (int === 0) {
-                    return "Incomplete";
-                } else if (int > 0) {
-                    return "Complete";
-                } else {
-                    return "--";
-                }
-            };
+                $scope.status_int_to_string = function (int) {
+                    if (int === 0) {
+                        return "Incomplete";
+                    } else if (int > 0) {
+                        return "Complete";
+                    } else {
+                        return "--";
+                    }
+                };
 
-            $scope.status_int_to_class = function (int) {
-                if (int === 0) {
-                    return "danger text-danger";
-                } else if (int > 0) {
-                    return "success text-success";
-                } else {
-                    return "";
-                }
-            };
+                $scope.status_int_to_class = function (int) {
+                    if (int === 0) {
+                        return "danger text-danger";
+                    } else if (int > 0) {
+                        return "success text-success";
+                    } else {
+                        return "";
+                    }
+                };
 
-            $scope.status_int_to_glyphicon = function (int) {
-                if (int === 0) {
-                    return "glyphicon glyphicon-thumbs-down";
-                } else if (int > 0) {
-                    return "glyphicon glyphicon-thumbs-up";
-                } else {
-                    return "";
-                }
-            };
+                $scope.status_int_to_glyphicon = function (int) {
+                    if (int === 0) {
+                        return "glyphicon glyphicon-thumbs-down";
+                    } else if (int > 0) {
+                        return "glyphicon glyphicon-thumbs-up";
+                    } else {
+                        return "";
+                    }
+                };
 
-            $scope.get_subject_teachers = function (subject, grade) {
-                if ((subject != null) && (grade != null)) {
-                    return get_subject_teachers(subject, grade).join("<br>");
-                }
-                    return "";
-            };
-        });
-
+                $scope.get_subject_teachers = function (subject, grade) {
+                    if ((subject) && (grade)) {
+                        return get_subject_teachers(subject, grade).join("<br>");
+                    }
+                        return "";
+                };
+            })
+            .error(function (data){
+                console.log(data);
+            });
 
     }])
-    .controller('EditController', ['$scope','$http','$routeParams',function($scope,$http,$routeParams) {
+    .controller('EditController', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams) {
         $scope.competencies = [{"competency": null, "duration": 1}];
         // $scope.created_by = "";
-        if ($routeParams.grade != null && $routeParams.subject != null) {
+        if (($routeParams.grade) && ($routeParams.subject)) {
             // console.log($routeParams);
-            $scope.grade = parseInt($routeParams.grade);
+            $scope.grade = parseInt($routeParams.grade, 10);
             $scope.subject = $routeParams.subject;
 
-            $http.get('/api/competencies?grade=' + $routeParams.grade + '&subject=' + $routeParams.subject).success(function(data){
-                console.log(data);
-                if (data.id) {
-                    $scope.competencies = data.competencies_json;
-                    $scope.created_by = data.created_by;
-                    $scope.id = data.id;
-                }
-            });
+            $http.get('/api/competencies?grade=' + $routeParams.grade + '&subject=' + $routeParams.subject)
+                .success(function (data) {
+                    console.log(data);
+                    if (data.id) {
+                        $scope.competencies = data.competencies_json;
+                        $scope.created_by = data.created_by;
+                        $scope.id = data.id;
+                    }
+                })
+                .error(function (data) {
+                    console.log(data);
+                });
         }
 
 
@@ -126,7 +133,7 @@ angular.module('myApp.controllers', []).
 
         $scope.add_new_competency = function () {
             if ($scope.competencies.length < $scope.get_max_meetings()) {
-                if ($scope.competencies[$scope.competencies.length - 1].competency != null) {
+                if ($scope.competencies[$scope.competencies.length - 1].competency) {
                     $scope.competencies.push({"competency": null, "duration": 1});
                 }
             }
@@ -145,29 +152,29 @@ angular.module('myApp.controllers', []).
                 $scope.competencies.splice($scope.competencies.length - 1,1);
             }
             return $scope.competencies.length;
-        }
+        };
 
         $scope.post_data = {};
 
-        $scope.teachers = ["Melanie Abello","Michael David John Abello","Alex Carl Almeda","Avenger Alob Jr.",
-            "Marley Arbon","Mary Immaculate Aringay","John Symon Bailon","Mylene Bersabal","Vanessa Caballero",
-            "Rachel Cabuco","Rizza Jane Cañete","Priscilliano Capangpangan","Charlito Codizar","Fidelis Cuay",
-            "Mylene Louise Curso","Jasmin Del Mar","Glen Delator","April Dawn Dizon","Christine Duran",
-            "Reydon Encinares","Virginia Escosora","Ma. Filipina Evano","Mitos Gonzales","Ma. Antonia Huan",
-            "Krizmagnum Ibaos","Alven Rey Labadan","Pamela Labadan","Regine Lagrimas","Rosie Fe Legaspino",
-            "Estelita Lim","Sheng Liu","Noel Martin Llevares","Marybeth Macarayan","Ma. Rubelyn Macion",
-            "Prety Maloloy-on","Jennifer Manatad","Marvi Maquilan","Mary Lourdes Melloria","Marisse Paraoan",
-            "Racel Parilla","Clark Ian Pelen","Ma. Elizabeth Pelen","Avecenna Peteros","Rohaiba Radiamoda",
-            "Maria Christine Ramirez","Bernice Marsha Reyes","Mildred Rios","Mary Jane Rodrigo",
-            "Jacqueline Therese Sanchez","Concepcion Agnes Sarza","May Sastre","Estela Serrano",
-            "Anthony Hejie Suralta","Nilda Torregosa","Maria Lisandra Tugaoen","Nancy Uy","Eve Vecina",
-            "Jean Eleonor Velasco","Mae Divina Velasco","Bei Yao","Cecilia Yap","Grace Yap","Susana Yap",
-            "Paul John Ylanan","Xiaoyan Zhang","Annie Abucay","Lea Amores"];
+        $scope.teachers = ["Melanie Abello", "Michael David John Abello", "Alex Carl Almeda", "Avenger Alob Jr.",
+            "Marley Arbon", "Mary Immaculate Aringay", "John Symon Bailon", "Mylene Bersabal", "Vanessa Caballero",
+            "Rachel Cabuco", "Rizza Jane Cañete", "Priscilliano Capangpangan", "Charlito Codizar", "Fidelis Cuay",
+            "Mylene Louise Curso", "Jasmin Del Mar", "Glen Delator", "April Dawn Dizon", "Christine Duran",
+            "Reydon Encinares", "Virginia Escosora", "Ma. Filipina Evano", "Mitos Gonzales", "Ma. Antonia Huan",
+            "Krizmagnum Ibaos", "Alven Rey Labadan", "Pamela Labadan", "Regine Lagrimas", "Rosie Fe Legaspino",
+            "Estelita Lim", "Sheng Liu", "Noel Martin Llevares", "Marybeth Macarayan", "Ma. Rubelyn Macion",
+            "Prety Maloloy-on", "Jennifer Manatad", "Marvi Maquilan", "Mary Lourdes Melloria", "Marisse Paraoan",
+            "Racel Parilla", "Clark Ian Pelen", "Ma. Elizabeth Pelen", "Avecenna Peteros", "Rohaiba Radiamoda",
+            "Maria Christine Ramirez", "Bernice Marsha Reyes", "Mildred Rios", "Mary Jane Rodrigo",
+            "Jacqueline Therese Sanchez", "Concepcion Agnes Sarza", "May Sastre", "Estela Serrano",
+            "Anthony Hejie Suralta", "Nilda Torregosa", "Maria Lisandra Tugaoen", "Nancy Uy", "Eve Vecina",
+            "Jean Eleonor Velasco", "Mae Divina Velasco", "Bei Yao", "Cecilia Yap", "Grace Yap", "Susana Yap",
+            "Paul John Ylanan", "Xiaoyan Zhang", "Annie Abucay", "Lea Amores"];
 
         $scope.are_entries_valid = function () {
             var items_to_validate = [$scope.grade,$scope.subject,$scope.created_by];
-            var are_competencies_valid, are_inputs_valid
-            if (($scope.competencies.length > 0) && ($scope.competencies[0].competency != null)) {
+            var are_competencies_valid, are_inputs_valid;
+            if (($scope.competencies.length > 0) && ($scope.competencies[0].competency)) {
                 are_competencies_valid = true;
             } else {
                 are_competencies_valid = false;
@@ -218,7 +225,7 @@ angular.module('myApp.controllers', []).
         };
 
         $scope.get_subject_teachers = function (subject, grade) {
-            if ((subject != null) && (grade != null)) {
+            if ((subject) && (grade)) {
                 return get_subject_teachers(subject, grade).join(", ");
             }
                 return "";

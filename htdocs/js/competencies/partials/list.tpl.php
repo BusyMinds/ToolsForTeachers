@@ -58,8 +58,8 @@
           <tr ng-repeat="item in subject_status">
             <th>{{item.subject}}</th>
             <td ng-repeat="status in item.status" ng-class="status_int_to_class(status)">
-              <a ng-href="#/edit?grade={{$index+1}}&subject={{item.subject}}" ng-class="status_int_to_class(status)" tooltip-html-unsafe="{{get_subject_teachers(item.subject,$index+1)}}">
-                <span ng-class="status_int_to_glyphicon(status)" ng-show="status_int_to_glyphicon(status)"></span> {{status_int_to_string(status)}}
+              <a ng-href="#/edit?grade={{$index+1}}&subject={{item.subject}}" ng-class="status_int_to_class(status)" ng-show="(status != null)" tooltip-html-unsafe="{{get_subject_teachers(item.subject,$index+1)}}">
+                <span ng-class="status_int_to_glyphicon(status)"></span> {{status_int_to_string(status)}}
               </a>
             </td>
           </tr>
