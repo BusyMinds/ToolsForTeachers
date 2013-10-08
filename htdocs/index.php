@@ -40,7 +40,6 @@ $app->get('/competencies', function() use($app) {
 });
 
 $app->get('/api/competencies', function() use($app) {
-
     connect_to_db();
     $res = $app->response();
     $res['Content-Type'] = 'application/json';
