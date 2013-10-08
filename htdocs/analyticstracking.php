@@ -1,5 +1,6 @@
 <?php
-if ($_SERVER['SERVER_NAME'] == "ecr-files.gopagoda.com") {
+// if ($_SERVER['SERVER_NAME'] == "ecr-files.gopagoda.com") {
+if (1 == 2) {
 ?>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
