@@ -12,17 +12,24 @@
 
     </div>
     <?php include_once("common-includes.js.php"); ?>
-    <!--<script src="js/vendor/underscore.min.js"></script>-->
     <script src="js/vendor/angular.min.js"></script>
-    <script src="js/competencies/globals.js?minify=true"></script>
-    <script src="js/competencies/app.js?minify=true"></script>
-    <!-- // <script src="js/competencies/services.js"></script> -->
-    <script src="js/competencies/controllers.js?minify=true"></script>
+    <?php
+    if ($_SERVER['SERVER_NAME'] == 'localhost') {
+    ?>
+    <script src="js/competencies/globals.js?packer=true"></script>
+    <script src="js/competencies/app.js?packer=true"></script>
+    <script src="js/competencies/controllers.js?packer=true"></script>
+    <?php
+    } else {
+    ?>
+    <script src="js/competencies/globals.js"></script>
+    <script src="js/competencies/app.js"></script>
+    <script src="js/competencies/controllers.js"></script>
+    <?php
+    }
+    ?>
     <script src="js/vendor/ui-bootstrap-custom-0.6.0.min.js"></script>
     <script src="js/vendor/ui-bootstrap-custom-tpls-0.6.0.min.js"></script>
-    <!-- // <script src="js/vendor/ui-select2.js"></script> -->
-    <!-- // <script src="js/competencies/filters.js"></script> -->
-    <!-- // <script src="js/competencies/directives.js"></script> -->
 
     <?php include_once("analyticstracking.php"); ?>
   </body>
