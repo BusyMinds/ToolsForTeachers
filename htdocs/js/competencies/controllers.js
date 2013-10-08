@@ -81,9 +81,11 @@ angular.module('myApp.controllers', []).
 
             $http.get('/api/competencies?grade=' + $routeParams.grade + '&subject=' + $routeParams.subject).success(function(data){
                 console.log(data);
-                $scope.competencies = data.competencies_json;
-                $scope.created_by = data.created_by;
-                $scope.id = data.id;
+                if (data.id) {
+                    $scope.competencies = data.competencies_json;
+                    $scope.created_by = data.created_by;
+                    $scope.id = data.id;
+                }
             });
         }
 

@@ -51,8 +51,12 @@ $app->get('/api/competencies', function() use($app) {
             ->raw_query('SELECT id, grade_level, competencies_json, subject, created_by, created_at FROM competencies WHERE id IN (
                 SELECT max(id) FROM competencies WHERE is_active = 1 GROUP BY concat(grade_level, subject)
                 ) AND subject = :subject AND grade_level = :grade',array('subject' => $subject, 'grade' => $grade))->find_array();
-        $competencies_status[0]['competencies_json'] = json_decode($competencies_status[0]['competencies_json'],true);
-        $competencies_status = $competencies_status[0];
+        if (!empty($competencies_status)) {
+            $competencies_status[0]['competencies_json'] = json_decode($competencies_status[0]['competencies_json'],true);
+            $competencies_status = $competencies_status[0];
+        } else {
+            $competencies_status = array();
+        }
         echo json_encode($competencies_status);
     } elseif (!$grade || !$subject) {
         $subjects_in_grades = array(
