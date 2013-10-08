@@ -15,7 +15,8 @@ angular.module('myApp.controllers', []).
                 for (var i = 0; i < $scope.subject_status.length; i++) {
                     for (var j = 0; j < $scope.subject_status[i].status.length; j++) {
                         if ($scope.subject_status[i].status[j]) {
-                            sum += $scope.subject_status[i].status[j];
+                            // sum += $scope.subject_status[i].status[j];
+                            sum++;
                         }
                     }
                 }
