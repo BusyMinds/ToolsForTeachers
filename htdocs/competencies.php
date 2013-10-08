@@ -16,15 +16,15 @@
     <?php
     if ($_SERVER['SERVER_NAME'] == 'localhost') {
     ?>
-    <script src="js/competencies/globals.js?packer=true"></script>
-    <script src="js/competencies/app.js?packer=true"></script>
-    <script src="js/competencies/controllers.js?packer=true"></script>
-    <?php
-    } else {
-    ?>
     <script src="js/competencies/globals.js"></script>
     <script src="js/competencies/app.js"></script>
     <script src="js/competencies/controllers.js"></script>
+    <?php
+    } else {
+    ?>
+    <script src="js/competencies/globals.js?packer=true"></script>
+    <script src="js/competencies/app.js?packer=true"></script>
+    <script src="js/competencies/controllers.js?packer=true"></script>
     <?php
     }
     ?>
