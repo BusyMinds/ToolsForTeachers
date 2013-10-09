@@ -1,0 +1,179 @@
+commit 4f338e8e679d74b00666c43526a43cd46897dc68
+Author: Noel Martin Llevares <noelmartin@gmail.com>
+Date:   Tue Oct 8 10:27:29 2013 +0800
+
+    fixed counting of competencies vs status
+
+commit 1c5b918700325741f0e82ce5f02762f9954d1ed6
+Author: Noel Martin Llevares <dashmug@gmail.com>
+Date:   Tue Oct 8 03:49:01 2013 +0800
+
+    removed google fonts
+
+commit 770356cdda3e078ff71226dd554ac4622cc541ab
+Author: Noel Martin Llevares <dashmug@gmail.com>
+Date:   Tue Oct 8 03:40:30 2013 +0800
+
+    added google fonts
+
+commit 879c02091a1ed9ec2b6ca230f7f931d5a20547cc
+Author: Noel Martin Llevares <dashmug@gmail.com>
+Date:   Tue Oct 8 03:30:17 2013 +0800
+
+    changed icons for competencies
+
+commit 05924e7a76d1ea227f1e91883015ee44832edbe6
+Author: Noel Martin Llevares <dashmug@gmail.com>
+Date:   Tue Oct 8 03:27:26 2013 +0800
+
+    changed glyphicon for competencies
+
+commit fcf7bc8fc7607d5c178e5cedb3ddff9a1df26a4f
+Author: Noel Martin Llevares <dashmug@gmail.com>
+Date:   Tue Oct 8 03:21:40 2013 +0800
+
+    removed debug message
+
+commit 1a9f5df23c55a82ca88621c2cafa638ee1aedba6
+Author: Noel Martin Llevares <dashmug@gmail.com>
+Date:   Tue Oct 8 03:18:11 2013 +0800
+
+    fixes
+
+commit a8b1e49e48af3b9a498f966156ff1c981d47c91a
+Author: Noel Martin Llevares <dashmug@gmail.com>
+Date:   Tue Oct 8 03:16:51 2013 +0800
+
+    changed to php 5.4
+
+commit a0fc4047c1d0417a109a04d198405e6bb3f714ae
+Author: Noel Martin Llevares <dashmug@gmail.com>
+Date:   Tue Oct 8 03:10:35 2013 +0800
+
+    added phpinfo
+
+commit 405c12e052ec4fa28557464de9e64dc871dfb7d2
+Author: Noel Martin Llevares <dashmug@gmail.com>
+Date:   Tue Oct 8 02:54:55 2013 +0800
+
+    added delete button
+
+commit 7377f90fe63f71cd9c07bac3526712b3e389c7f5
+Author: Noel Martin Llevares <dashmug@gmail.com>
+Date:   Tue Oct 8 00:50:36 2013 +0800
+
+    changed display of teachers on list page
+
+commit 2b492ae579de7d5ffa29712d6a93c72dddee08b4
+Author: Noel Martin Llevares <dashmug@gmail.com>
+Date:   Tue Oct 8 00:46:40 2013 +0800
+
+    revised subject teachers
+
+commit 2be5ac792c09180f07e7d2d29eab6c21bf23eb7d
+Author: Noel Martin Llevares <dashmug@gmail.com>
+Date:   Mon Oct 7 23:33:35 2013 +0800
+
+    moved partials; added global functions for getting the subject teacher
+
+commit 2222d1ab59adb995e909852f671e3b0e00d9a549
+Author: Noel Martin Llevares <dashmug@gmail.com>
+Date:   Mon Oct 7 13:27:00 2013 +0800
+
+    removed default "--" on missing subjects
+
+commit 9b231f6d6083be60cb745b8863c308c047b91fcf
+Author: Noel Martin Llevares <dashmug@gmail.com>
+Date:   Mon Oct 7 11:28:02 2013 +0800
+
+    removed debug messages
+
+commit 4a043701038c1eee5dc534d3b70ff7c0ebe67532
+Author: Noel Martin Llevares <dashmug@gmail.com>
+Date:   Mon Oct 7 11:24:16 2013 +0800
+
+    various edits to enable creator on edit competencies page
+
+commit fe1fcf81eca164bd360ac90539a95bf4004e2d47
+Author: Noel Martin Llevares <dashmug@gmail.com>
+Date:   Mon Oct 7 07:44:36 2013 +0800
+
+    changed alert message
+
+commit f387eb96b3a6ed3c109b74fa61be746cb6d275ab
+Author: Noel Martin Llevares <dashmug@gmail.com>
+Date:   Mon Oct 7 07:42:12 2013 +0800
+
+    added typeahead for competency creator
+
+commit bddf9ef7e87921046fbb1d30f46548ac2ef98c6d
+Author: Noel Martin Llevares <dashmug@gmail.com>
+Date:   Sun Oct 6 13:22:16 2013 +0800
+
+    revised .htaccess
+
+commit 83e099ab3b0e30f6298266fa8e9e606b3a8fe949
+Author: Noel Martin Llevares <dashmug@gmail.com>
+Date:   Sun Oct 6 07:32:39 2013 +0800
+
+    added sqlbuddy
+
+commit b6ad9c1e2c2f1f17b05f9cccd70b7a90cd5a34b8
+Author: Noel Martin Llevares <dashmug@gmail.com>
+Date:   Sun Oct 6 07:26:40 2013 +0800
+
+    editController can now load from DB
+
+commit 7e6c9e9a3740b7a2cc4d39c924931b329012b2e7
+Author: Noel Martin Llevares <dashmug@gmail.com>
+Date:   Sun Oct 6 06:45:58 2013 +0800
+
+    reverted
+
+commit 52c0b609bbfaeabbaf22b3b034eda4dd1451e733
+Author: Noel Martin Llevares <dashmug@gmail.com>
+Date:   Sun Oct 6 06:43:39 2013 +0800
+
+    fixed url
+
+commit d206285843ea3cdb790c204723a776734f4f71fd
+Author: Noel Martin Llevares <dashmug@gmail.com>
+Date:   Sun Oct 6 06:35:44 2013 +0800
+
+    refactored to use Slim as router
+
+commit 52e528d0cc69fdae1d3115d945c47a8b4883d7de
+Author: Noel Martin Llevares <dashmug@gmail.com>
+Date:   Sun Oct 6 02:53:32 2013 +0800
+
+    js tweaks
+
+commit cdad222681dcbd555c90c199d5303afdde06cc85
+Author: Noel Martin Llevares <dashmug@gmail.com>
+Date:   Sun Oct 6 02:46:21 2013 +0800
+
+    CSS + footer tweaks
+
+commit 0888d016d39b344abd2d74bd9448d34bb8f492c5
+Author: Noel Martin Llevares <dashmug@gmail.com>
+Date:   Sun Oct 6 02:22:33 2013 +0800
+
+    cosmetic changes
+
+commit a9e369b38ca86d2747f6365647487245b4fdee39
+Author: Noel Martin Llevares <dashmug@gmail.com>
+Date:   Sun Oct 6 01:43:20 2013 +0800
+
+    various edits
+
+commit f9f864353190bef2cf1a5981e6b79e78943c5ada
+Author: Noel Martin Llevares <dashmug@gmail.com>
+Date:   Sat Oct 5 23:46:14 2013 +0800
+
+    added routeParams to EditController
+
+commit 5a9a5b8bd3a61237fe9d07fa664c3a52167e3371
+Author: Noel Martin Llevares <dashmug@gmail.com>
+Date:   Sat Oct 5 23:24:32 2013 +0800
+
+    new commits
