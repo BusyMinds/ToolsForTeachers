@@ -1,6 +1,5 @@
 <?php
 if ($_SERVER['SERVER_NAME'] == "ecr-files.gopagoda.com") {
-// if (1 == 2) {
 ?>
 <div class="row">
   <div class="col-md-12">
