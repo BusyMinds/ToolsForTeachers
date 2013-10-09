@@ -8,8 +8,8 @@
       <div class="jumbotron">
         <h1><strong class="text-primary">Electronic Class Record</strong></h1>
         <p class="lead">
-          Latest version: <span class="text-info">930</span><br>
-          Last updated: <span class="text-info">September 30, 2013</span><br>
+          Latest version: <span class="text-info">1009</span><br>
+          Last updated: <span class="text-info">October 9, 2013</span><br>
         </p>
         <ul class="list-inline">
           <li><a class="btn btn-primary btn-lg" href="#downloads"><span class="glyphicon glyphicon-download-alt"></span> Go to downloads</a></li>
@@ -28,7 +28,7 @@
                 <li><em>To download all your templates, click each file that belongs to you.</em></li>
                   <ul>
                     <?php
-                      foreach (glob('files/*.xlsm') as $filepath) {
+                      foreach (glob('files/*.xlsx') as $filepath) {
                         $filename = str_replace("files/", "", $filepath);
                         echo "<li><a href=\"download.php?file=$filename\">" . $filename . "</a></li>\n";
                       }
@@ -46,11 +46,12 @@
             </div>
             <div class="panel-body">
               <ul class="list-unstyled">
-                <li><em>Version 930: (September 30, 2012)</em></li>
+                <li><em>Version 1009: (October 9, 2013)</em></li>
                 <li>
                   <ul>
-                    <li>Corrected conduct transmutation to letter grades.</li>
-                    <li class="text-muted">Improved configuration procedure on first start</li>
+                    <li>Switched to a macro-free version since some low-end computers are having problems with macros.</li>
+                    <li>Adding more entry columns will have to be done manually by unhiding columns.</li>
+                    <li class="text-muted">Custom password-protection is no longer available. You can use Excel's built-in password protection instead.</li>
                   </ul>
                 </li>
               </ul>
@@ -93,6 +94,13 @@
             </div>
             <div class="panel-body">
               <ul class="list-unstyled">
+                <li><em>Version 930: (September 30, 2013)</em></li>
+                <li>
+                  <ul>
+                    <li>Corrected conduct transmutation to letter grades.</li>
+                    <li class="text-muted">Improved configuration procedure on first start</li>
+                  </ul>
+                </li>
                 <li><em>Version 920: (September 20, 2013)</em></li>
                 <li>
                   <ul>
